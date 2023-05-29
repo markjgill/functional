@@ -1,6 +1,7 @@
 package com.markjgill.functional;
 
 import io.vavr.Function1;
+import io.vavr.collection.List;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,5 +59,12 @@ class LogicTest
     assertThat(Logic.either(Function1.constant(true), Function1.identity()).apply(false)).isTrue();
     assertThat(Logic.either(Function1.constant(false), Function1.identity()).apply(true)).isTrue();
     assertThat(Logic.either(Function1.constant(false), Function1.identity()).apply(false)).isFalse();
+  }
+
+  @Test
+  void anyPass()
+  {
+    assertThat(Logic.anyPass(List.of(Function1.constant(false), Function1.constant(true))).apply("Hello")).isTrue();
+    assertThat(Logic.anyPass(List.of(Function1.constant(false), Function1.constant(false))).apply("Hello")).isFalse();
   }
 }
