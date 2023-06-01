@@ -115,6 +115,16 @@ public class Logic
     return Logic.<A>when().apply(condition, fn);
   }
 
+  public static <A> Function3<Predicate<A>, Function1<A, A>, A, A> unless()
+  {
+    return (condition, fn, val) -> condition.test(val) ? val : fn.apply(val);
+  }
+
+  public static <A> Function1<A, A> unless(Predicate<A> condition, Function1<A, A> fn)
+  {
+    return Logic.<A>unless().apply(condition, fn);
+  }
+
   public static <A, B> Function4<Predicate<A>, Function1<A, B>, Function1<A, B>, A, B> ifElse()
   {
     return (condition, onTrue, onFalse, val) -> condition.test(val) ? onTrue.apply(val) : onFalse.apply(val);

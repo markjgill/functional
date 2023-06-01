@@ -104,6 +104,13 @@ class LogicTest
   }
 
   @Test
+  void unless()
+  {
+    assertThat(Logic.unless(Predicates.is("HelloWorld"), Function1.constant("Hello")).apply("HelloWorld")).isEqualTo("HelloWorld");
+    assertThat(Logic.unless(Predicates.is("HelloWorld"), Function1.constant("Hello")).apply("Hello World")).isEqualTo("Hello");
+  }
+
+  @Test
   void ifElse()
   {
     assertThat(Logic.ifElse(
