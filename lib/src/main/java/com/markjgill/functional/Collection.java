@@ -84,4 +84,14 @@ public class Collection
   {
     return Collection.<A>none().apply(condition);
   }
+
+  public static <A> Function2<String, Traversable<A>, String> join()
+  {
+    return (separator, col) -> col.mkString(separator);
+  }
+
+  public static <A> Function1<Traversable<A>, String> join(String separator)
+  {
+    return Collection.<A>join().apply(separator);
+  }
 }

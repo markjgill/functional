@@ -1,6 +1,7 @@
 package com.markjgill.functional;
 
 import io.vavr.Function1;
+import io.vavr.collection.Array;
 import io.vavr.collection.List;
 import org.junit.jupiter.api.Test;
 
@@ -78,5 +79,12 @@ class CollectionTest
 
     assertThat(Collection.none(predicate).apply(List.of(1, 3, 5))).isTrue();
     assertThat(Collection.none(predicate).apply(List.of(1, 3, 6))).isFalse();
+  }
+
+  @Test
+  void join()
+  {
+    assertThat(Collection.join("; ").apply(List.of(1, 2, 3))).isEqualTo("1; 2; 3");
+    assertThat(Collection.join(":").apply(Array.of("a", "b", "c"))).isEqualTo("a:b:c");
   }
 }
