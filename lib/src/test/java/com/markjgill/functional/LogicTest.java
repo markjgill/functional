@@ -1,6 +1,7 @@
 package com.markjgill.functional;
 
 import io.vavr.Function1;
+import io.vavr.Predicates;
 import io.vavr.collection.List;
 import org.junit.jupiter.api.Test;
 
@@ -98,7 +99,7 @@ class LogicTest
   @Test
   void when()
   {
-    assertThat(Logic.when(Function1.constant(true), Function1.constant("Hello")).apply("HelloWorld")).isEqualTo("Hello");
-    assertThat(Logic.when(Function1.constant(false), Function1.constant("Hello")).apply("HelloWorld")).isEqualTo("HelloWorld");
+    assertThat(Logic.when(Predicates.is("HelloWorld"), Function1.constant("Hello")).apply("HelloWorld")).isEqualTo("Hello");
+    assertThat(Logic.when(Predicates.is("HelloWorld"), Function1.constant("Hello")).apply("Hello World")).isEqualTo("Hello World");
   }
 }

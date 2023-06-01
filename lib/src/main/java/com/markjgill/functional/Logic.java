@@ -8,6 +8,8 @@ import io.vavr.collection.Traversable;
 import io.vavr.control.Option;
 import org.apache.commons.lang3.BooleanUtils;
 
+import java.util.function.Predicate;
+
 public class Logic
 {
   public static <A> Function2<A, A, A> defaultTo()
@@ -105,12 +107,12 @@ public class Logic
     return Logic.<A>anyPass().apply(fns);
   }
 
-  public static <A> Function3<Function1<A, Boolean>, Function1<A, A>, A, A> when()
+  public static <A> Function3<Predicate<A>, Function1<A, A>, A, A> when()
   {
-    return (condition, fn, val) -> condition.apply(val) ? fn.apply(val) : val;
+    return (condition, fn, val) -> condition.test(val) ? fn.apply(val) : val;
   }
 
-  public static <A> Function1<A, A> when(Function1<A, Boolean> condition, Function1<A, A> fn)
+  public static <A> Function1<A, A> when(Predicate<A> condition, Function1<A, A> fn)
   {
     return Logic.<A>when().apply(condition, fn);
   }
