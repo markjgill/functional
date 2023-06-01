@@ -102,4 +102,20 @@ class LogicTest
     assertThat(Logic.when(Predicates.is("HelloWorld"), Function1.constant("Hello")).apply("HelloWorld")).isEqualTo("Hello");
     assertThat(Logic.when(Predicates.is("HelloWorld"), Function1.constant("Hello")).apply("Hello World")).isEqualTo("Hello World");
   }
+
+  @Test
+  void ifElse()
+  {
+    assertThat(Logic.ifElse(
+            Predicates.is(true),
+            Function1.constant("Hello"),
+            Function1.constant("World")
+    ).apply(true)).isEqualTo("Hello");
+
+    assertThat(Logic.ifElse(
+            Predicates.is(true),
+            Function1.constant("Hello"),
+            Function1.constant("World")
+    ).apply(false)).isEqualTo("World");
+  }
 }

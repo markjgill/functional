@@ -1,9 +1,7 @@
 package com.markjgill.functional;
 
 import com.google.common.collect.Range;
-import io.vavr.Function1;
-import io.vavr.Function2;
-import io.vavr.Function3;
+import io.vavr.*;
 import io.vavr.collection.Traversable;
 import io.vavr.control.Option;
 import org.apache.commons.lang3.BooleanUtils;
@@ -115,5 +113,15 @@ public class Logic
   public static <A> Function1<A, A> when(Predicate<A> condition, Function1<A, A> fn)
   {
     return Logic.<A>when().apply(condition, fn);
+  }
+
+  public static <A, B> Function4<Predicate<A>, Function1<A, B>, Function1<A, B>, A, B> ifElse()
+  {
+    return (condition, onTrue, onFalse, val) -> condition.test(val) ? onTrue.apply(val) : onFalse.apply(val);
+  }
+
+  public static <A, B> Function1<A, B> ifElse(Predicate<A> condition, Function1<A, B> onTrue, Function1<A, B> onFalse)
+  {
+    return Logic.<A, B>ifElse().apply(condition, onTrue, onFalse);
   }
 }
