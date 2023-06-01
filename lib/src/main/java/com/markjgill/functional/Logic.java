@@ -45,6 +45,26 @@ public class Logic
     return Logic.<A>between().apply(start, end);
   }
 
+  public static Function2<Boolean, Boolean, Boolean> and()
+  {
+    return (bool, otherBool) -> otherBool && bool;
+  }
+
+  public static Function1<Boolean ,Boolean> and(Boolean bool)
+  {
+    return Logic.and().apply(bool);
+  }
+
+  public static <A> Function2<Function1<A, Boolean>, Function1<A, Boolean>, Function1<A, Boolean>> both()
+  {
+    return (fn, otherFn) -> val -> and(fn.apply(val)).apply(otherFn.apply(val));
+  }
+
+  public static <A> Function1<A, Boolean> both(Function1<A, Boolean> fn, Function1<A, Boolean> otherFn)
+  {
+    return Logic.<A>both().apply(fn, otherFn);
+  }
+
   public static Function2<Boolean, Boolean, Boolean> or()
   {
     return (bool, otherBool) -> bool || otherBool;
@@ -63,6 +83,16 @@ public class Logic
   public static <A> Function1<A, Boolean> either(Function1<A, Boolean> fn, Function1<A, Boolean> otherFn)
   {
     return Logic.<A>either().apply(fn, otherFn);
+  }
+
+  public static <A> Function2<Traversable<Function1<A, Boolean>>, A, Boolean> allPass()
+  {
+    return (fns, val) -> fns.reduce(both()).apply(val);
+  }
+
+  public static <A> Function1<A, Boolean> allPass(Traversable<Function1<A, Boolean>> fns)
+  {
+    return Logic.<A>allPass().apply(fns);
   }
 
   public static <A> Function2<Traversable<Function1<A, Boolean>>, A, Boolean> anyPass()

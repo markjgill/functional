@@ -44,6 +44,15 @@ class LogicTest
   }
 
   @Test
+  void and()
+  {
+    assertThat(Logic.and(true).apply(true)).isTrue();
+    assertThat(Logic.and(true).apply(false)).isFalse();
+    assertThat(Logic.and(false).apply(true)).isFalse();
+    assertThat(Logic.and(false).apply(false)).isFalse();
+  }
+
+  @Test
   void or()
   {
     assertThat(Logic.or(true, true)).isTrue();
@@ -53,12 +62,30 @@ class LogicTest
   }
 
   @Test
+  void both()
+  {
+    assertThat(Logic.both(Function1.constant(true), Function1.identity()).apply(true)).isTrue();
+    assertThat(Logic.both(Function1.constant(true), Function1.identity()).apply(false)).isFalse();
+    assertThat(Logic.both(Function1.constant(false), Function1.identity()).apply(true)).isFalse();
+    assertThat(Logic.both(Function1.constant(false), Function1.identity()).apply(false)).isFalse();
+  }
+
+  @Test
   void either()
   {
     assertThat(Logic.either(Function1.constant(true), Function1.identity()).apply(true)).isTrue();
     assertThat(Logic.either(Function1.constant(true), Function1.identity()).apply(false)).isTrue();
     assertThat(Logic.either(Function1.constant(false), Function1.identity()).apply(true)).isTrue();
     assertThat(Logic.either(Function1.constant(false), Function1.identity()).apply(false)).isFalse();
+  }
+
+  @Test
+  void allPass()
+  {
+    assertThat(Logic.allPass(List.of(Function1.constant(true), Function1.identity())).apply(true)).isTrue();
+    assertThat(Logic.allPass(List.of(Function1.constant(true), Function1.identity())).apply(false)).isFalse();
+    assertThat(Logic.allPass(List.of(Function1.constant(false), Function1.identity())).apply(true)).isFalse();
+    assertThat(Logic.allPass(List.of(Function1.constant(false), Function1.identity())).apply(false)).isFalse();
   }
 
   @Test
