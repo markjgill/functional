@@ -52,4 +52,22 @@ class CollectionTest
 
     assertThat(Collection.reject(predicate).apply(integers)).isEqualTo(List.of(1, 3));
   }
+
+  @Test
+  void any()
+  {
+    Predicate<Integer> predicate = x -> x % 2 == 0;
+
+    assertThat(Collection.any(predicate).apply(List.of(1, 2, 3))).isTrue();
+    assertThat(Collection.any(predicate).apply(List.of(1, 3, 5))).isFalse();
+  }
+
+  @Test
+  void all()
+  {
+    Predicate<Integer> predicate = x -> x % 2 == 0;
+
+    assertThat(Collection.all(predicate).apply(List.of(2, 4, 6))).isTrue();
+    assertThat(Collection.all(predicate).apply(List.of(2, 4, 7))).isFalse();
+  }
 }

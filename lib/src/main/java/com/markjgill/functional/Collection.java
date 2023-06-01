@@ -52,4 +52,24 @@ public class Collection
   {
     return Collection.<A>reject().apply(predicate);
   }
+
+  public static <A> Function2<Predicate<A>, Traversable<A>, Boolean> any()
+  {
+    return (condition, col) -> col.exists(condition);
+  }
+
+  public static <A> Function1<Traversable<A>, Boolean> any(Predicate<A> condition)
+  {
+    return Collection.<A>any().apply(condition);
+  }
+
+  public static <A> Function2<Predicate<A>, Traversable<A>, Boolean> all()
+  {
+    return (condition, col) -> col.forAll(condition);
+  }
+
+  public static <A> Function1<Traversable<A>, Boolean> all(Predicate<A> condition)
+  {
+    return Collection.<A>all().apply(condition);
+  }
 }
