@@ -6,6 +6,8 @@ import io.vavr.collection.Traversable;
 
 import java.util.function.Predicate;
 
+import static com.markjgill.functional.Logic.not;
+
 public class Collection
 {
   public static <A> Function1<Traversable<Traversable<A>>, Traversable<A>> flatten()
@@ -71,5 +73,15 @@ public class Collection
   public static <A> Function1<Traversable<A>, Boolean> all(Predicate<A> condition)
   {
     return Collection.<A>all().apply(condition);
+  }
+
+  public static <A> Function2<Predicate<A>, Traversable<A>, Boolean> none()
+  {
+    return Collection.<A>any().andThen(not());
+  }
+
+  public static <A> Function1<Traversable<A>, Boolean> none(Predicate<A> condition)
+  {
+    return Collection.<A>none().apply(condition);
   }
 }

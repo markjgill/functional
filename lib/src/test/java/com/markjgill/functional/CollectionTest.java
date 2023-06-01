@@ -70,4 +70,13 @@ class CollectionTest
     assertThat(Collection.all(predicate).apply(List.of(2, 4, 6))).isTrue();
     assertThat(Collection.all(predicate).apply(List.of(2, 4, 7))).isFalse();
   }
+
+  @Test
+  void none()
+  {
+    Predicate<Integer> predicate = x -> x % 2 == 0;
+
+    assertThat(Collection.none(predicate).apply(List.of(1, 3, 5))).isTrue();
+    assertThat(Collection.none(predicate).apply(List.of(1, 3, 6))).isFalse();
+  }
 }
