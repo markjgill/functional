@@ -152,4 +152,28 @@ class CollectionTest
     assertThat(Collection.reverse().apply(List.of(1, 3, 2, 4))).isEqualTo(List.of(4, 2, 3, 1));
     assertThat(Collection.reverse().apply(Array.of("b", "a", "c"))).isEqualTo(Array.of("c", "a", "b"));
   }
+
+  @Test
+  void take()
+  {
+    assertThat(Collection.take(2).apply(List.of(1, 2, 3, 4))).isEqualTo(List.of(1, 2));
+    assertThat(Collection.take(1).apply(Array.of("a", "b"))).isEqualTo(List.of("a"));
+    assertThat(Collection.take(0).apply(Array.of("a", "b"))).isEmpty();
+  }
+
+  @Test
+  void drop()
+  {
+    assertThat(Collection.drop(2).apply(List.of(1, 2, 3, 4))).isEqualTo(List.of(3, 4));
+    assertThat(Collection.drop(1).apply(Array.of("a", "b"))).isEqualTo(List.of("b"));
+    assertThat(Collection.drop(2).apply(Array.of("a", "b"))).isEmpty();
+  }
+
+  @Test
+  void nth()
+  {
+    assertThat(Collection.nth(2).apply(List.of(1, 2, 3))).isEqualTo(3);
+    assertThat(Collection.nth(1).apply(Array.of("a", "b", "c"))).isEqualTo("b");
+    assertThat(Collection.nth(0).apply(Array.of("a", "b"))).isEqualTo("a");
+  }
 }

@@ -160,4 +160,34 @@ public class Collection
   {
     return col -> col.foldRight(List.of(), append());
   }
+
+  public static <A> Function2<Integer, Traversable<A>, Traversable<A>> take()
+  {
+    return (num, col) -> col.take(num);
+  }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> take(Integer num)
+  {
+    return Collection.<A>take().apply(num);
+  }
+
+  public static <A> Function2<Integer, Traversable<A>, Traversable<A>> drop()
+  {
+    return (num, col) -> col.drop(num);
+  }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> drop(Integer num)
+  {
+    return Collection.<A>drop().apply(num);
+  }
+
+  public static <A> Function2<Integer, Traversable<A>, A> nth()
+  {
+    return (index, col) -> Collection.<A>last().compose(take(index + 1)).apply(col);
+  }
+
+  public static <A> Function1<Traversable<A>, A> nth(Integer index)
+  {
+    return Collection.<A>nth().apply(index);
+  }
 }
