@@ -94,4 +94,11 @@ class LogicTest
     assertThat(Logic.anyPass(List.of(Function1.constant(false), Function1.constant(true))).apply("Hello")).isTrue();
     assertThat(Logic.anyPass(List.of(Function1.constant(false), Function1.constant(false))).apply("Hello")).isFalse();
   }
+
+  @Test
+  void when()
+  {
+    assertThat(Logic.when(Function1.constant(true), Function1.constant("Hello")).apply("HelloWorld")).isEqualTo("Hello");
+    assertThat(Logic.when(Function1.constant(false), Function1.constant("Hello")).apply("HelloWorld")).isEqualTo("HelloWorld");
+  }
 }
