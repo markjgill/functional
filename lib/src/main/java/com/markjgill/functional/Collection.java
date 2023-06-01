@@ -155,4 +155,9 @@ public class Collection
   {
     return Collection.<A>intersection().apply(col);
   }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> reverse()
+  {
+    return col -> col.foldRight(List.of(), append());
+  }
 }

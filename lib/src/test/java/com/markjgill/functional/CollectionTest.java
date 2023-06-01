@@ -145,4 +145,11 @@ class CollectionTest
     assertThat(Collection.intersection(List.of(1, 2)).apply(List.of(2, 3, 4))).isEqualTo(List.of(2));
     assertThat(Collection.intersection(List.of(1, 2)).apply(List.of(3, 4))).isEmpty();
   }
+
+  @Test
+  void reverse()
+  {
+    assertThat(Collection.reverse().apply(List.of(1, 3, 2, 4))).isEqualTo(List.of(4, 2, 3, 1));
+    assertThat(Collection.reverse().apply(Array.of("b", "a", "c"))).isEqualTo(Array.of("c", "a", "b"));
+  }
 }
