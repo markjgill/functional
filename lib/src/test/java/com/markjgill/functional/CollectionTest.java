@@ -87,4 +87,25 @@ class CollectionTest
     assertThat(Collection.join("; ").apply(List.of(1, 2, 3))).isEqualTo("1; 2; 3");
     assertThat(Collection.join(":").apply(Array.of("a", "b", "c"))).isEqualTo("a:b:c");
   }
+
+  @Test
+  void head()
+  {
+    assertThat(Collection.head().apply(List.of(1, 2, 3))).isEqualTo(1);
+    assertThat(Collection.head().apply(Array.of("a", "b", "c"))).isEqualTo("a");
+  }
+
+  @Test
+  void last()
+  {
+    assertThat(Collection.last().apply(List.of(1, 2, 3))).isEqualTo(3);
+    assertThat(Collection.last().apply(Array.of("a", "b", "c"))).isEqualTo("c");
+  }
+
+  @Test
+  void tail()
+  {
+    assertThat(Collection.tail().apply(List.of(1, 2, 3))).isEqualTo(List.of(2, 3));
+    assertThat(Collection.tail().apply(Array.of("a", "b", "c"))).isEqualTo(List.of("b", "c"));
+  }
 }

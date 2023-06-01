@@ -94,4 +94,19 @@ public class Collection
   {
     return Collection.<A>join().apply(separator);
   }
+
+  public static <A> Function1<Traversable<A>, A> head()
+  {
+    return Traversable::head;
+  }
+
+  public static <A> Function1<Traversable<A>, A> last()
+  {
+    return Traversable::last;
+  }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> tail()
+  {
+    return Traversable::tail;
+  }
 }
