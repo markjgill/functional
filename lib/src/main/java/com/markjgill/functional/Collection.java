@@ -109,4 +109,9 @@ public class Collection
   {
     return Traversable::tail;
   }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> distinct()
+  {
+    return Traversable::distinct;
+  }
 }
