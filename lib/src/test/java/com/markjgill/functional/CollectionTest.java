@@ -129,4 +129,20 @@ class CollectionTest
     assertThat(Collection.prepend(3).apply(List.of(1, 2))).isEqualTo(List.of(3, 1, 2));
     assertThat(Collection.prepend("a").apply(List.of())).isEqualTo(List.of("a"));
   }
+
+  @Test
+  void union()
+  {
+    assertThat(Collection.union(List.of(1, 2)).apply(List.of(2, 3))).isEqualTo(List.of(1, 2, 2, 3));
+    assertThat(Collection.union(Array.of(1, 2)).apply(Array.of(2, 3))).isEqualTo(Array.of(1, 2, 2, 3));
+    assertThat(Collection.union(Array.of(3)).apply(Array.of(1, 2))).isEqualTo(Array.of(3, 1, 2));
+  }
+
+  @Test
+  void intersection()
+  {
+    assertThat(Collection.intersection(List.of(1, 2, 3)).apply(List.of(3, 4))).isEqualTo(List.of(3));
+    assertThat(Collection.intersection(List.of(1, 2)).apply(List.of(2, 3, 4))).isEqualTo(List.of(2));
+    assertThat(Collection.intersection(List.of(1, 2)).apply(List.of(3, 4))).isEmpty();
+  }
 }

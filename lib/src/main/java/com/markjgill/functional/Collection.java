@@ -135,4 +135,24 @@ public class Collection
   {
     return Collection.<A>prepend().apply(val);
   }
+
+  public static <A> Function2<Traversable<A>, Traversable<A>, Traversable<A>> union()
+  {
+    return (col, otherCol) -> List.ofAll(col).appendAll(otherCol);
+  }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> union(Traversable<A> col)
+  {
+    return Collection.<A>union().apply(col);
+  }
+
+  public static <A> Function2<Traversable<A>, Traversable<A>, Traversable<A>> intersection()
+  {
+    return (col, otherCol) -> filter(col::contains).apply(otherCol);
+  }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> intersection(Traversable<A> col)
+  {
+    return Collection.<A>intersection().apply(col);
+  }
 }
