@@ -115,4 +115,18 @@ class CollectionTest
     assertThat(Collection.distinct().apply(List.of(1, 1, 2, 3, 2))).isEqualTo(List.of(1, 2, 3));
     assertThat(Collection.distinct().apply(Array.of("a", "b", "b"))).isEqualTo(Array.of("a", "b"));
   }
+
+  @Test
+  void append()
+  {
+    assertThat(Collection.append(3).apply(List.of(1, 2))).isEqualTo(List.of(1, 2, 3));
+    assertThat(Collection.append("a").apply(List.of())).isEqualTo(List.of("a"));
+  }
+
+  @Test
+  void prepend()
+  {
+    assertThat(Collection.prepend(3).apply(List.of(1, 2))).isEqualTo(List.of(3, 1, 2));
+    assertThat(Collection.prepend("a").apply(List.of())).isEqualTo(List.of("a"));
+  }
 }

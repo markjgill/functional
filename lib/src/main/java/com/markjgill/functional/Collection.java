@@ -2,6 +2,7 @@ package com.markjgill.functional;
 
 import io.vavr.Function1;
 import io.vavr.Function2;
+import io.vavr.collection.List;
 import io.vavr.collection.Traversable;
 
 import java.util.function.Predicate;
@@ -113,5 +114,25 @@ public class Collection
   public static <A> Function1<Traversable<A>, Traversable<A>> distinct()
   {
     return Traversable::distinct;
+  }
+
+  public static <A> Function2<A, Traversable<A>, Traversable<A>> append()
+  {
+    return (val, col) -> List.ofAll(col).append(val);
+  }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> append(A val)
+  {
+    return Collection.<A>append().apply(val);
+  }
+
+  public static <A> Function2<A, Traversable<A>, Traversable<A>> prepend()
+  {
+    return (val, col) -> List.ofAll(col).prepend(val);
+  }
+
+  public static <A> Function1<Traversable<A>, Traversable<A>> prepend(A val)
+  {
+    return Collection.<A>prepend().apply(val);
   }
 }
