@@ -50,7 +50,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.markjgill'
             artifactId = 'functional'
-            version = '0.1-SNAPSHOT'
+            version = '0.1.0-SNAPSHOT'
 
             from components.java
         }

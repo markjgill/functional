@@ -2,6 +2,14 @@
 
 A library of Functions to make functional coding in Java easy
 
+### Build
+
+Note that Functional is not yet available in Maven Central, so it will be necessary to build and publish to your local Maven repository to use this library.
+
+```gradle
+./gradlew publishToMavenLocal
+```
+
 ### Import
 
 ...into a Maven project
@@ -10,14 +18,14 @@ A library of Functions to make functional coding in Java easy
 <dependency>
     <groupId>com.markjgill</groupId>
     <artifactId>functional</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
 ...into a Gradle project
 
 ```gradle
-api 'com.markjgill:functional:0.1.0'
+api 'com.markjgill:functional:0.1.0-SNAPSHOT'
 ```
 
 ### Usage
