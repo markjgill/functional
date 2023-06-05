@@ -26,7 +26,7 @@ api 'com.markjgill:functional:0.1.0'
 - IT is possible to use anonymous functions, however you may need to explicitly add generics as required.
 - Functions can be composed together, using Java's `Function.compose` or `Function.andThen`.
 - Composed functions may start with a function of any arity, but subsequent functions must be unary.
-- Collection-based functions can either accept collections from Java's `Collection` or vavr.io's `Traversable` interfaces.
+- Collection-based functions accept vavr.io's `Traversable` interface.
 
 ### Examples
 
